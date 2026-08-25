@@ -1,0 +1,7 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import { projects } from "../../data/content";
+---
+<!-- أطلس المسارات: الأرشيف محطة مركزية؛ يقدّم عدد العقد وبطاقات الإشارة كفهرس قابل للمسح السريع. -->
+<BaseLayout title="التعريبات — Alpha Line" description="أرشيف تعريبات Alpha Line وحالات مشاريعها وإصداراتها." active="translations"><section class="page-hero archive-hero"><div class="page-station"><span class="station-counter">02</span><span class="route-orbit"></span><span class="route-label">ARCHIVE / ALL TRANSLATIONS</span><span class="coordinates">AXIS · 02</span></div><h1>أرشيف التعريبات</h1><p>كل مشروع في صفحة مستقلة، مع حالته، توافق النسخ، وسجلّ الإصدارات عند توفره.</p></section><section class="page-content"><div class="archive-protocol"><span><i>ACTIVE NODES</i><b>{projects.length.toString().padStart(2, "0")}</b></span><span><i>FORMAT</i><b>PROJECT DOSSIERS</b></span><span><i>ROUTE</i><b>AL–02</b></span></div><div class="filter-static"><a class="is-active" href="/translations/">الكل</a><a href="/categories/sciadv/">SciADV</a><a href="/categories/independent/">مستقلة</a></div><div class="project-grid">{projects.map((project, index) => <ProjectCard project={project} index={index + 1} />)}</div></section></BaseLayout>

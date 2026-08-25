@@ -1,0 +1,12 @@
+---
+// هوية «أطلس المسارات»: الرأس يكتفي بالمحطات المتاحة ولا يلمّح إلى قناة تواصل غير حقيقية.
+import { site } from "../data/content";
+import contact from "../content/site.json";
+import "../styles/brand-lockup.css";
+const { active = "" } = Astro.props;
+const links = [{ href: "/", label: "الرئيسية", key: "home" }, { href: "/translations/", label: "التعريبات", key: "translations" }, { href: "/blog/", label: "المدونة", key: "blog" }, { href: "/about/", label: "حول الفريق", key: "about" }];
+const hasContactChannel = contact.contactChannels.some((channel) => channel.enabled && channel.href);
+const mobileMark = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663093354307/wpoZAiltieVJXTfx.png";
+const desktopWordmark = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663093354307/VdhHVenlAsPflIrN.png";
+---
+<header class="site-header"><a class="brand-lockup" href="/" aria-label="Alpha Line / ألفا لاين — الرئيسية"><img src={mobileMark} alt="شعار Alpha Line" class="brand-logo-mobile" loading="eager" decoding="sync" onerror={`this.onerror=null;this.src='${site.logo}'`} /><span class="brand-desktop-lockup"><img src={desktopWordmark} alt="Alpha Line" class="brand-logo-desktop" loading="eager" decoding="sync" onerror={`this.onerror=null;this.src='${site.logo}'`} /><span class="brand-arabic" lang="ar">ألفا لاين</span></span><span class="brand-route" aria-hidden="true"><i></i><b>00</b></span></a><nav class="desktop-nav" aria-label="التنقل الرئيسي">{links.map((link) => <a href={link.href} class:list={{ active: active === link.key }}>{link.label}</a>)}</nav><div class="header-actions"><a class="icon-button" href="/search/" aria-label="البحث"><span aria-hidden="true">⌕</span></a><details class="mobile-menu"><summary class="icon-button" aria-label="فتح القائمة"><span aria-hidden="true">☰</span></summary><nav aria-label="قائمة الهاتف">{links.map((link) => <a href={link.href}>{link.label}<span>←</span></a>)}{hasContactChannel && <a href="/contact/">تواصل معنا<span>←</span></a>}</nav></details></div></header>

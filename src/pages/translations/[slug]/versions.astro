@@ -1,0 +1,8 @@
+---
+// هوية «أطلس المسارات»: لا يولّد سجل الإصدارات إلا عند وجود إصدار عام حقيقي قابل للتوثيق.
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { projects, type Project } from "../../../data/content";
+export function getStaticPaths() { return projects.filter((project) => project.hasPublishedRelease).map((project) => ({ params: { slug: project.slug }, props: { project } })); }
+const { project } = Astro.props as { project: Project };
+---
+<BaseLayout title={`إصدارات ${project.arabicTitle} — Alpha Line`} description={`أرشيف إصدارات تعريب ${project.arabicTitle}.`} active="translations"><section class="page-hero compact version-page-hero"><a class="back-link dark" href={`/translations/${project.slug}/`}>← {project.arabicTitle}</a><span class="route-label" dir="ltr">VERSION LOG / {project.routeCode}</span><h1>سجل الإصدارات</h1><p><span>{project.arabicTitle}</span><span aria-hidden="true"> · </span><bdi class="bidi-ltr" dir="ltr">{project.title}</bdi></p></section><section class="page-content"><div class="version-list">{project.versions.map((version, index) => <article class="version-row"><span class="bidi-ltr" dir="ltr">{String(index + 1).padStart(2, "0")}</span><div><h2>تعريب <bdi class="bidi-ltr" dir="ltr">{version.translation}</bdi></h2><p>{version.notes}</p></div><dl><div><dt>اللعبة</dt><dd class="bidi-ltr" dir="ltr">{version.game}</dd></div><div><dt>التاريخ</dt><dd class="bidi-ltr" dir="ltr">{version.date}</dd></div></dl></article>)}</div></section></BaseLayout>

@@ -1,0 +1,63 @@
+{
+  "site": {
+    "name": "Alpha Line",
+    "arabicName": "ألفا لاين",
+    "tagline": "مسار جديد للحكاية نفسها."
+  },
+  "featured": {
+    "eyebrow": "المسار المميز",
+    "title": "STEINS;GATE",
+    "arabicTitle": "شتاينز؛غيت",
+    "summary": "سجلّ مسار أولي لواحدة من أكثر حكايات SciADV حضورًا. تُوثّق هنا مراحل التعريب وعلاماته قبل فتح أي إصدار للتنزيل.",
+    "status": "في التحضير",
+    "release": "علامة المسار: التحضير الأولي",
+    "image": "/manus-storage/alpha-line-hero-signal_ea2543be.jpg",
+    "accent": "#46C8F5"
+  },
+  "projects": [
+    {
+      "id": "chaos-head",
+      "title": "CHAOS;HEAD NOAH",
+      "arabicTitle": "كايوس؛هيد نواه",
+      "series": "SCIENCE ADVENTURE",
+      "status": "قيد التخطيط",
+      "updated": "Windows · AL–02",
+      "image": "/manus-storage/alpha-line-card-archive_bbcfd239.jpg",
+      "tone": "ivory"
+    },
+    {
+      "id": "robotics-notes",
+      "title": "ROBOTICS;NOTES",
+      "arabicTitle": "روبوتكس؛نوتس",
+      "series": "SCIENCE ADVENTURE",
+      "status": "على المسار",
+      "updated": "Windows · AL–03",
+      "image": "/manus-storage/alpha-line-card-station_2e41a0be.jpg",
+      "tone": "blue"
+    },
+    {
+      "id": "independent-01",
+      "title": "مشروع مستقل",
+      "arabicTitle": "عنوان يُكشف لاحقًا",
+      "series": "INDEPENDENT",
+      "status": "قريبًا",
+      "updated": "وجهة قيد التحديد · AL–04",
+      "image": "/manus-storage/alpha-line-card-archive_bbcfd239.jpg",
+      "tone": "plum"
+    }
+  ],
+  "updates": [
+    {
+      "date": "01",
+      "month": "تمهيدي",
+      "title": "افتتاح سجلّ المسار",
+      "body": "إطلاق أرشيف Alpha Line وبطاقة المشروع الأولى."
+    },
+    {
+      "date": "02",
+      "month": "لاحقًا",
+      "title": "علامة قادمة",
+      "body": "يُضاف كل تقدم مع تاريخه وإصداره وحالته المعتمدة."
+    }
+  ]
+}

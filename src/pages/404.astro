@@ -1,0 +1,18 @@
+---
+// هوية «أطلس المسارات»: الخطأ محطة مفقودة داخل الخريطة؛ يقدّم مسار عودة واضحًا بدل طريق مسدود.
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="المسار غير موجود — Alpha Line" description="لم نعثر على هذه المحطة في أرشيف Alpha Line.">
+  <main class="lost-route">
+    <section class="lost-route-card" aria-labelledby="lost-route-title">
+      <div class="lost-route-map" aria-hidden="true"><span class="lost-node origin">AL</span><i></i><span class="lost-node gap">?</span><i class="broken"></i><span class="lost-node end">404</span></div>
+      <div class="lost-route-copy"><span class="route-label">ROUTE / LOST · COORD / AL–00</span><h1 id="lost-route-title">هذه المحطة غير موجودة</h1><p>قد يكون الرابط تغيّر، أو أن هذه الصفحة لم تُعلن بعد. لا توجد مشكلة في الأرشيف؛ فقط عد إلى المسار المتاح.</p><div class="lost-route-actions"><a class="primary-cta" href="/translations/">إلى ملف المشروع <span>←</span></a><a class="lost-home-link" href="/">العودة إلى البداية</a></div></div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  /* أطلس المسارات: 404 انقطاع مرئي في السكّة ثم اختيار عودة عملي، لا مجرد عنوان خطأ. */
+  .lost-route{min-height:calc(100svh - 68px);display:grid;place-items:center;padding:36px 18px;background:radial-gradient(circle at 78% 12%,rgba(38,119,146,.16),transparent 38%),#071f2e}.lost-route-card{position:relative;display:grid;gap:30px;width:min(900px,100%);padding:28px 20px;overflow:hidden;border:1px solid rgba(70,200,245,.3);background:linear-gradient(140deg,rgba(11,46,63,.94),rgba(4,22,33,.96));box-shadow:0 28px 65px rgba(0,0,0,.28)}.lost-route-card::after{position:absolute;top:0;left:0;width:82px;border-top:2px solid var(--cyan);content:""}.lost-route-map{display:flex;align-items:center;justify-content:center;gap:0;min-height:80px}.lost-node{display:grid;place-items:center;flex:0 0 auto;width:43px;height:43px;border:1px solid rgba(70,200,245,.72);border-radius:50%;color:var(--cyan);font:600 11px "Space Grotesk",sans-serif;letter-spacing:.06em}.lost-route-map i{width:calc(25% - 22px);height:1px;background:linear-gradient(90deg,var(--cyan),rgba(70,200,245,.15))}.lost-route-map .broken{margin-right:10px;background:repeating-linear-gradient(90deg,rgba(70,200,245,.7) 0 5px,transparent 5px 10px)}.lost-node.gap{border-style:dashed;color:#a5c1ca}.lost-node.end{border-color:rgba(232,237,232,.62);color:var(--paper)}.lost-route-copy{max-width:570px}.lost-route-copy h1{margin:9px 0 10px;color:var(--paper);font:600 clamp(27px,5vw,43px)/1.4 "Noto Kufi Arabic",sans-serif;letter-spacing:-.07em}.lost-route-copy p{margin:0;color:#abc0c7;font-size:13px;line-height:2}.lost-route-actions{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:24px}.lost-home-link{color:#b6cbd1;font-size:12px;text-decoration:none;border-bottom:1px solid rgba(70,200,245,.45);padding-bottom:4px}@media(min-width:720px){.lost-route-card{grid-template-columns:260px 1fr;align-items:center;padding:45px}.lost-route-map{transform:rotate(-90deg)}.lost-route-map i{width:47px}.lost-route-map .broken{margin-right:10px}.lost-route-copy{padding-right:18px}}
+</style>

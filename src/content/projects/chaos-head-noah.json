@@ -1,0 +1,22 @@
+{
+  "visible": false,
+  "slug": "chaos-head-noah",
+  "routeCode": "AL–02",
+  "order": 2,
+  "title": "CHAOS;HEAD NOAH",
+  "arabicTitle": "كايوس؛هيد نواه",
+  "series": "SCIENCE ADVENTURE",
+  "seriesLabel": "SciADV",
+  "status": "قيد التخطيط",
+  "statusKey": "planning",
+  "platforms": ["Windows"],
+  "shortDescription": "محطة محتملة ضمن خط Science Adventure. تظهر تفاصيل النطاق الفعلي عند اعتماد المشروع رسميًا.",
+  "story": "مدينة مضطربة، شخصية منعزلة، وسلسلة أحداث تضع حدود الواقع تحت الاختبار. سيُضاف الملخص الكامل عند بداية العمل الفعلي.",
+  "translationStory": "لا يزال هذا المشروع في مرحلة التخطيط. لا يمثل ظهوره هنا وعدًا بموعد إصدار أو تأكيدًا لنطاق العمل النهائي.",
+  "installation": ["تظهر إرشادات التثبيت مع أول إصدار عام."],
+  "heroImage": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663093354307/nkOJOLsWTBJoFCkF.jpg",
+  "coverImage": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663093354307/nkOJOLsWTBJoFCkF.jpg",
+  "feature": false,
+  "updatedAt": "مرحلة التخطيط",
+  "versions": [{"translation": "—", "game": "—", "date": "لم يبدأ", "notes": "لا يوجد إصدار عام.", "current": true}]
+}

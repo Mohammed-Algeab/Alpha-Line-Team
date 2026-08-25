@@ -1,0 +1,37 @@
+{
+  "contactChannels": [
+    {
+      "id": "telegram",
+      "enabled": false,
+      "route": "CH–01",
+      "code": "TG",
+      "label": "TELEGRAM",
+      "title": "تيليغرام",
+      "description": "قناة الإعلانات وسجل التحديثات المختصر.",
+      "href": "",
+      "action": "فتح تيليغرام"
+    },
+    {
+      "id": "discord",
+      "enabled": false,
+      "route": "CH–02",
+      "code": "DS",
+      "label": "DISCORD",
+      "title": "ديسكورد",
+      "description": "مساحة النقاش والدعم وبلاغات التثبيت.",
+      "href": "",
+      "action": "فتح ديسكورد"
+    },
+    {
+      "id": "email",
+      "enabled": false,
+      "route": "CH–03",
+      "code": "@",
+      "label": "EMAIL",
+      "title": "البريد الإلكتروني",
+      "description": "للمراسلات التنظيمية والتعاون.",
+      "href": "",
+      "action": "إرسال رسالة"
+    }
+  ]
+}

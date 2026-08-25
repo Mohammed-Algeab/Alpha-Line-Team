@@ -1,0 +1,22 @@
+{
+  "visible": false,
+  "slug": "robotics-notes",
+  "routeCode": "AL–03",
+  "order": 3,
+  "title": "ROBOTICS;NOTES",
+  "arabicTitle": "روبوتكس؛نوتس",
+  "series": "SCIENCE ADVENTURE",
+  "seriesLabel": "SciADV",
+  "status": "على المسار",
+  "statusKey": "progress",
+  "platforms": ["Windows"],
+  "shortDescription": "بطاقة مشروع تمهيدية لمسار يجمع الروبوتات، الطموح، وصورة مدينة ساحلية تتغير ببطء.",
+  "story": "يُستكمل الملخص المعتمد عند فتح المشروع. الهدف من هذه الصفحة أن تبقى معلوماته وتحديثاته في موضع واحد.",
+  "translationStory": "المشروع على المسار كخطة عمل أولية. ستُستبدل هذه البيانات التجريبية بتحديثات قابلة للتتبع عند بدء العمل.",
+  "installation": ["تظهر إرشادات التثبيت مع أول إصدار عام."],
+  "heroImage": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663093354307/GMydYfAsMudvnfmw.jpg",
+  "coverImage": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663093354307/GMydYfAsMudvnfmw.jpg",
+  "feature": false,
+  "updatedAt": "على المسار",
+  "versions": [{"translation": "—", "game": "—", "date": "لم يبدأ", "notes": "لا يوجد إصدار عام.", "current": true}]
+}

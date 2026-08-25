@@ -1,0 +1,9 @@
+---
+// هوية «أطلس المسارات»: البطاقة تعرض المحطة والحالة الفعلية، ولا تسمي التحضير «إصدارًا» قبل وجود ملف قابل للتنزيل.
+import type { Project } from "../data/content";
+interface Props { project: Project; index?: number; }
+const { project, index = 1 } = Astro.props;
+const latest = project.versions.find((version) => version.current) ?? project.versions[0];
+const releaseLabel = project.hasPublishedRelease ? latest.translation : "قيد العمل";
+---
+<article class="project-card"><a href={`/translations/${project.slug}/`} class="project-card-link" aria-label={`تفاصيل ${project.arabicTitle}`}><div class="project-cover"><img src={project.coverImage} alt={`غلاف تمهيدي لمشروع ${project.arabicTitle}`} loading="lazy" /><div class="cover-shade"></div><span class="card-transmission-line" aria-hidden="true"><i></i></span><div class="card-index-bar"><span class="card-number bidi-ltr" dir="ltr">{String(index).padStart(2, "0")}</span><span class="card-route bidi-ltr" dir="ltr">NODE / {project.routeCode}</span></div><span class:list={["status-chip", `status-${project.statusKey}`]}>{project.status}</span></div><div class="project-card-body"><span class="card-series bidi-ltr" dir="ltr">{project.series}</span><h3>{project.arabicTitle}</h3><p class="card-title-en bidi-ltr" dir="ltr">{project.title}</p><div class="card-signal-grid"><span><i class="bidi-ltr" dir="ltr">PLATFORM</i><b class="bidi-ltr" dir="ltr">{project.platforms.join(" · ")}</b></span><span><i class="bidi-ltr" dir="ltr">{project.hasPublishedRelease ? "RELEASE" : "STATUS"}</i><b>{releaseLabel}</b></span></div><div class="card-bottom-line"><span class="bidi-ltr" dir="ltr">LAST MARK · {project.updatedAt}</span><b>↖</b></div></div></a></article>

@@ -1,0 +1,33 @@
+---
+// هوية «أطلس المسارات»: محطة التواصل لا تدّعي قناة غير جاهزة؛ كل عقدة تنقل المستخدم إلى إجراء حقيقي فقط.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import site from "../content/site.json";
+import "../styles/contact.css";
+
+const channels = site.contactChannels.filter((channel) => channel.enabled && channel.href);
+---
+
+<BaseLayout title="تواصل معنا — Alpha Line" description="قنوات التواصل الرسمية لفريق Alpha Line عند توفرها.">
+  <section class="page-hero compact contact-hero">
+    <div class="page-station"><span class="station-counter">06</span><span class="route-orbit"></span><span class="route-label">ALPHA LINE / CONTACT</span><span class="coordinates">CH · 06</span></div>
+    <h1>محطة التواصل</h1>
+    <p>{channels.length ? "اختر المسار الرسمي الأقرب لرسالتك." : "لم تُعلن قناة رسمية بعد؛ لذلك لا يظهر هنا رابط غير فعّال."}</p>
+  </section>
+
+  <section class="page-content contact-page" aria-labelledby="contact-terminal-title">
+    <header class="contact-terminal">
+      <div class="terminal-node" aria-hidden="true"><span>06</span><i></i><span>{channels.length ? "07" : "HOLD"}</span></div>
+      <div><span class="route-label">CONTACT / {channels.length ? "CHANNELS OPEN" : "CHANNELS PENDING"}</span><h2 id="contact-terminal-title">{channels.length ? "قنوات رسمية متاحة" : "القنوات قيد التجهيز"}</h2><p>{channels.length ? "تظهر القنوات الموثوقة فقط، وتُدار من مصدر محتوى واحد كي لا تبقى روابط قديمة أو غير رسمية." : "ستُضاف تيليغرام أولًا عند جاهزيتها. إلى ذلك الحين، صفحة المشروع هي المرجع الوحيد لحالته."}</p></div>
+    </header>
+
+    {channels.length ? (
+      <div class="contact-channel-grid">
+        {channels.map((channel, index) => <a class={`contact-channel contact-channel--${channel.id}`} href={channel.href} target={channel.id === "email" ? undefined : "_blank"} rel={channel.id === "email" ? undefined : "noopener noreferrer"}><div class="contact-channel-head"><span class="contact-channel-route">NODE / {String(index + 1).padStart(2, "0")} · {channel.route}</span><span class="channel-emblem" aria-hidden="true">{channel.code}</span></div><h2>{channel.title}</h2><p>{channel.description}</p><span class="contact-channel-cta">{channel.action}</span></a>)}
+      </div>
+    ) : (
+      <article class="contact-hold-card"><span class="hold-signal" aria-hidden="true">●</span><div><small>TRANSMISSION / HOLD</small><h3>لا نفتح مسارًا قبل أن يكون مفيدًا.</h3><p>لن نضيف بريدًا، ديسكورد، أو نموذج تواصل لمجرد ملء الصفحة. عند إطلاق قناة حقيقية، ستظهر هنا مباشرةً مع طريقة استخدامها.</p></div><span class="hold-coordinate" dir="ltr">AL–CH / 06</span></article>
+    )}
+
+    <aside class="contact-guidance"><span class="route-label">NOTE / CONTACT POLICY</span><h2>القنوات الرسمية فقط.</h2><p>تفاصيل الإبلاغ والدعم الخاصة بكل تعريبة تظهر مع وجود إصدار عام حقيقي.</p></aside>
+  </section>
+</BaseLayout>

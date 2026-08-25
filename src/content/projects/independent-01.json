@@ -1,0 +1,22 @@
+{
+  "visible": false,
+  "slug": "independent-01",
+  "routeCode": "AL–04",
+  "order": 4,
+  "title": "INDEPENDENT PROJECT",
+  "arabicTitle": "عنوان يُكشف لاحقًا",
+  "series": "INDEPENDENT",
+  "seriesLabel": "مستقلة",
+  "status": "قريبًا",
+  "statusKey": "soon",
+  "platforms": ["قيد التحديد"],
+  "shortDescription": "مساحة محجوزة لتعريبة مستقلة خارج المسارات الحالية. يظهر الاسم والتفاصيل عند اعتماد المشروع.",
+  "story": "تفاصيل الحكاية غير معلنة بعد.",
+  "translationStory": "المشروع محفوظ كإشارة مستقبلية فقط، من دون موعد أو التزام عام.",
+  "installation": ["تظهر الإرشادات عند إعلان المشروع."],
+  "heroImage": "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1400&q=85",
+  "coverImage": "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=85",
+  "feature": false,
+  "updatedAt": "وجهة قيد التحديد",
+  "versions": [{"translation": "—", "game": "—", "date": "قريبًا", "notes": "لا يوجد إصدار عام.", "current": true}]
+}

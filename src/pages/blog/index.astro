@@ -1,0 +1,25 @@
+---
+// هوية «أطلس المسارات»: المدونة أرشيف لما نُشر فعلًا؛ لا تتحول الحالة الفارغة إلى مقالات شكلية.
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { posts } from "../../data/content";
+---
+
+<BaseLayout title="المدونة — Alpha Line" description="تحديثات Alpha Line وملاحظات من مسار التعريب." active="blog">
+  <section class="page-hero blog-hero">
+    <div class="page-station"><span class="station-counter">04</span><span class="route-orbit"></span><span class="route-label">LOG / SIGNAL ARCHIVE</span><span class="coordinates">LG · 04</span></div>
+    <h1>من الخط</h1><p>إعلانات، قرارات موثقة، وسجل موجز لكل ما يستحق الظهور للمتابع.</p>
+  </section>
+  <section class="page-content blog-page" aria-labelledby="log-title">
+    <header class="blog-station-head"><span class="log-node">04</span><div><span class="route-label">ARCHIVE / {posts.length ? "OPEN" : "WAITING"}</span><h2 id="log-title">{posts.length ? "إشارات مسجلة" : "الأرشيف بانتظار الإشارة الأولى"}</h2></div><span class="log-coordinate" dir="ltr">AL–LOG / 04</span></header>
+    {posts.length ? (
+      <div class="post-list">{posts.map((post, index) => <article><span class="post-index">{String(index + 1).padStart(2, "0")}</span><div><span>{post.category} · {post.date}</span><h3><a href={`/blog/${post.slug}/`}>{post.title}</a></h3><p>{post.excerpt}</p><a class="post-read" href={`/blog/${post.slug}/`}>اقرأ السجل <b>←</b></a></div></article>)}</div>
+    ) : (
+      <article class="log-hold-card"><span class="log-hold-orbit" aria-hidden="true"></span><div><small>SIGNAL / NOT YET RECORDED</small><h3>لا توجد مقالات منشورة بعد.</h3><p>سيُضاف هنا خبر إطلاق، ملاحظة من العمل، أو قرار يفيد المتابعين. لن نكتب نصوصًا تجريبية لتبدو الصفحة ممتلئة.</p></div><a href="/translations/" class="outline-cta">انتقل إلى المشروع <span>←</span></a></article>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  /* أطلس المسارات: كل سجل هو عقدة قابلة للقراءة، والحالة الفارغة محطة انتقال لا طريق مسدود. */
+  .blog-hero .page-station{position:relative;z-index:1;margin-right:5vw}.blog-hero h1{margin-right:10vw}.blog-hero p{margin-right:4vw}.blog-page{display:grid;gap:18px}.blog-station-head{display:grid;grid-template-columns:38px 1fr;gap:13px;align-items:center;padding-bottom:17px;border-bottom:1px solid rgba(139,224,250,.18)}.log-node{display:grid;place-items:center;width:32px;height:32px;border:1px solid var(--cyan);border-radius:50%;color:var(--cyan);font:600 10px "Space Grotesk",sans-serif}.blog-station-head h2{margin:5px 0 0;color:var(--text-strong,#f0ede5);font:600 21px/1.55 "Noto Kufi Arabic",sans-serif;letter-spacing:-.06em}.log-coordinate{display:none;color:#87acb8;font:500 9px "Space Grotesk",sans-serif;letter-spacing:.1em}.post-list{display:grid;gap:10px}.post-list article{display:grid;grid-template-columns:35px 1fr;gap:14px;padding:18px;border:1px solid rgba(139,224,250,.18);background:rgba(10,43,58,.54)}.post-index{display:grid;place-items:center;align-self:start;width:30px;height:30px;border:1px solid rgba(70,200,245,.58);border-radius:50%;color:var(--cyan);font:600 10px "Space Grotesk",sans-serif}.post-list article div>span{color:#8eafb9;font:500 10px "Space Grotesk",sans-serif;letter-spacing:.05em}.post-list h3{margin:8px 0 7px;font:600 18px/1.6 "Noto Kufi Arabic",sans-serif;letter-spacing:-.055em}.post-list h3 a{color:var(--text-strong,#f0ede5);text-decoration:none}.post-list p{margin:0;color:var(--text-soft,#aec2c8);font-size:12px;line-height:2}.post-read{display:inline-flex;gap:8px;margin-top:12px;color:var(--text-strong,#f0ede5);font-size:11px;text-decoration:none}.post-read b{color:var(--cyan);font-size:16px;line-height:.8}.log-hold-card{position:relative;display:grid;gap:15px;padding:20px;overflow:hidden;border:1px solid rgba(70,200,245,.28);background:linear-gradient(130deg,rgba(10,47,64,.82),rgba(6,26,39,.92))}.log-hold-card::after{position:absolute;bottom:16px;left:-11px;width:73px;border-top:1px dashed var(--cyan);content:""}.log-hold-orbit{width:37px;height:37px;border:1px solid rgba(70,200,245,.74);border-bottom-color:transparent;border-radius:50%}.log-hold-card small{color:var(--cyan);font:600 9px "Space Grotesk",sans-serif;letter-spacing:.14em}.log-hold-card h3{margin:7px 0 5px;color:var(--text-strong,#f0ede5);font:600 18px/1.6 "Noto Kufi Arabic",sans-serif}.log-hold-card p{max-width:43rem;margin:0;color:var(--text-soft,#aec2c8);font-size:12px;line-height:2}.log-hold-card .outline-cta{justify-self:start;margin-top:3px}@media(min-width:720px){.blog-station-head{grid-template-columns:44px 1fr auto;gap:17px}.log-coordinate{display:block}.log-hold-card{grid-template-columns:45px 1fr auto;align-items:center;padding:26px}.log-hold-card .outline-cta{justify-self:end}.post-list article{grid-template-columns:44px 1fr;padding:22px}}
+</style>

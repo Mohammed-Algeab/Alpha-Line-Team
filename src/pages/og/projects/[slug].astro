@@ -1,0 +1,40 @@
+---
+import { projects, type Project } from "../../../data/content";
+import "../../../styles/project-share-card.css";
+
+// هوية «أطلس المسارات»: بطاقة المشاركة محطة مختصرة، والحالة الحقيقية أهم من أي إصدار شكلي.
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+
+const { project } = Astro.props as { project: Project };
+const current = project.versions.find((version) => version.current) ?? project.versions[0];
+const releaseLabel = current ? (current.translation === "—" ? "RELEASE / TBA" : `RELEASE / ${current.translation}`) : "RELEASE / NOT PUBLISHED";
+---
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <title>{project.arabicTitle} — Alpha Line</title>
+  </head>
+  <body>
+    <main class="project-share-card">
+      <div class="share-map" aria-hidden="true"><i></i><i></i><i></i></div>
+      <section class="share-copy">
+        <div class="share-topline"><span class="share-brand">ALPHA <b>LINE</b></span><span class="share-route">PROJECT / {project.routeCode}</span></div>
+        <div class="share-project-meta"><span class:list={["share-status", `share-status--${project.statusKey}`]}>{project.status}</span><span>{project.seriesLabel}</span></div>
+        <h1>{project.arabicTitle}</h1>
+        <p class="share-title">{project.title}</p>
+        <p class="share-description">{project.shortDescription}</p>
+        <div class="share-footer"><span>{project.platforms.slice(0, 2).join(" · ")}</span><span>{releaseLabel}</span></div>
+      </section>
+      <figure class="share-cover"><img src={project.ogImage ?? project.coverImage} alt="" /><figcaption><span>NODE / {project.routeCode}</span><b>{String(project.order).padStart(2, "0")}</b></figcaption></figure>
+    </main>
+  </body>
+</html>

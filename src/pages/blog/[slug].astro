@@ -1,0 +1,8 @@
+---
+// هوية «أطلس المسارات»: لا يملك المقال صفحة مستقلة إلا عندما يعلَّم منشورًا صراحة من ملف المحتوى.
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { posts, type Post } from "../../data/content";
+export function getStaticPaths() { return posts.map((post) => ({ params: { slug: post.slug }, props: { post } })); }
+const { post } = Astro.props as { post: Post };
+---
+<BaseLayout title={`${post.title} — Alpha Line`} description={post.excerpt} active="blog"><article class="article-page"><a class="back-link dark" href="/blog/">← المدونة</a><span class="route-label">{post.category} / {post.date}</span><h1>{post.title}</h1><p class="article-lede">{post.excerpt}</p><div class="article-body">{post.body.map((paragraph) => <p>{paragraph}</p>)}</div></article></BaseLayout>

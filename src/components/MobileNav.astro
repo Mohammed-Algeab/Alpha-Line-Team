@@ -1,0 +1,5 @@
+---
+const { active = "" } = Astro.props;
+const items = [{ href: "/", icon: "◫", label: "الرئيسية", key: "home" }, { href: "/translations/", icon: "◎", label: "التعريبات", key: "translations" }, { href: "/blog/", icon: "▤", label: "المدونة", key: "blog" }, { href: "/about/", icon: "◌", label: "الفريق", key: "about" }];
+---
+<nav class="bottom-nav" aria-label="تنقل الهاتف">{items.map((item) => <a href={item.href} class:list={{ "bottom-nav-item": true, "is-current": active === item.key }}><span aria-hidden="true">{item.icon}</span><small>{item.label}</small></a>)}</nav>

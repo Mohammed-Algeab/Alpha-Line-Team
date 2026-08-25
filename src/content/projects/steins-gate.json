@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "slug": "steins-gate",
+  "route": { "code": "AL–01", "order": 1 },
+  "game": {
+    "title": "STEINS;GATE",
+    "arabicTitle": "شتاينز؛غيت",
+    "series": { "key": "SCIENCE ADVENTURE", "label": "SciADV", "slug": "sciadv" },
+    "platforms": ["Windows · Steam"],
+    "artworkKey": "steinsGateCover",
+    "summary": "المشروع الأول لألفا لاين ضمن SciADV. يجري إعداد أساس التعريب لنسخة Steam، ولا يوجد إصدار عام أو ملفات تنزيل في هذه المرحلة.",
+    "story": "تبدأ الحكاية من أكيهابارا، حيث تقود تجربة صغيرة إلى سلسلة من الرسائل القادمة من زمن آخر. تتسع الدائرة تدريجيًا بين الاحتمالات والقرارات التي لا يمكن التراجع عنها."
+  },
+  "project": {
+    "status": "in_progress",
+    "statusLabel": "قيد العمل",
+    "featured": true,
+    "visible": true,
+    "stage": {
+      "key": "translation-preparation",
+      "label": "قيد إعداد مسار التعريب",
+      "summary": "لا توجد ترجمة منشورة أو نسخة قابلة للاختبار بعد. يُجهَّز مسار العمل وبيئة التعريب قبل بدء الفصول."
+    },
+    "scope": {
+      "included": ["سيُعلن نطاق كل إصدار مع نشره."],
+      "excluded": [],
+      "knownLimits": ["لا توجد معلومات إصدار أو توافق نهائي قبل الاختبار العملي."]
+    },
+    "progress": [
+      { "key": "target", "label": "تحديد النسخة المستهدفة", "note": "المسار المستهدف هو نسخة Steam مع أساس CoZ 2.2.0.", "state": "active" },
+      { "key": "environment", "label": "إعداد بيئة التعريب", "note": "تجهيز بيئة العمل ومسار الملفات قبل البدء بالنصوص.", "state": "upcoming" },
+      { "key": "chapters", "label": "تعريب الفصول", "note": "سيبدأ العمل على الفصلين 0 و1 لاحقًا، من دون موعد معلن.", "state": "upcoming" },
+      { "key": "testing", "label": "اختبار الإصدار", "note": "لا تبدأ مرحلة التوافق العملي إلا بعد وجود نسخة تجريبية حقيقية.", "state": "upcoming" }
+    ],
+    "compatibility": {
+      "platform": "Windows · Steam",
+      "gameVersion": "build 4138816 (هدف مبدئي)",
+      "patchBase": "CoZ Patch 2.2.0",
+      "verification": "pending",
+      "note": "هذه بيئة مستهدفة بانتظار الاختبار العملي؛ لا يُعلن توافق نهائي في هذه المرحلة."
+    }
+  },
+  "release": {
+    "published": false,
+    "versions": [],
+    "downloads": [],
+    "installation": ["لا توجد ملفات تنزيل أو خطوات تثبيت عامة في هذه المرحلة.", "ستنشر متطلبات نسخة اللعبة وطريقة التثبيت مع أول إصدار قابل للاختبار."]
+  },
+  "seo": {
+    "indexable": true,
+    "aliases": ["شتاينز غيت", "Steins Gate", "Steins;Gate", "SciADV"],
+    "updatedLabel": "قيد العمل"
+  }
+}

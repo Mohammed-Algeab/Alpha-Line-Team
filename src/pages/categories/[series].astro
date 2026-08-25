@@ -1,0 +1,8 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import { getProjectsBySeries, series } from "../../data/content";
+export function getStaticPaths() { return series.map((item) => ({ params: { series: item.slug }, props: { item, projects: getProjectsBySeries(item.slug) } })); }
+const { item, projects } = Astro.props;
+---
+<BaseLayout title={`${item.name} — Alpha Line`} description={item.description} active="translations"><section class="page-hero compact"><a class="back-link dark" href="/translations/">← كل التعريبات</a><span class="route-label">CATEGORY / {item.slug.toUpperCase()}</span><h1>{item.name}</h1><p>{item.description}</p></section><section class="page-content"><div class="project-grid">{projects.map((project, index) => <ProjectCard project={project} index={index + 1} />)}</div></section></BaseLayout>

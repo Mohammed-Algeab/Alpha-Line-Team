@@ -1,0 +1,83 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { featuredProject, posts } from "../data/content";
+
+const latest = featuredProject.versions.find((version) => version.current) ?? featuredProject.versions[0];
+const hasUpdates = posts.length > 0;
+const featuredReleaseLabel = featuredProject.hasPublishedRelease && latest ? latest.translation : "لم يُنشر بعد";
+---
+
+<BaseLayout title="Alpha Line — أرشيف التعريبات" active="home">
+  <!-- أطلس المسارات: الرئيسية تبدأ بالمشروع ثم تقوده محطات حالة ملموسة، لا فراغات أو بطاقات مكررة. -->
+  <section class="signal-bar"><span class="pulse-dot"></span><span>معاينة خاصة</span><i></i><span>لا يوجد إصدار تعريب منشور بعد</span></section>
+
+  <section class="featured-section home-featured" aria-labelledby="featured-title">
+    <div class="section-kicker">
+      <span class="station-counter">01</span><span class="route-orbit"></span><span class="route-label">ROUTE / {featuredProject.routeCode}</span><span>المسار المميز</span><span class="coordinates">35.68°N</span>
+    </div>
+    <article class="featured-card">
+      <span class="featured-route-line"><i></i></span>
+      <div class="featured-image-wrap">
+        <img src={featuredProject.heroImage} alt={`غلاف مشروع ${featuredProject.arabicTitle}`} loading="eager" />
+        <div class="featured-image-overlay"></div>
+        <span class="image-signal">● {featuredProject.series}</span>
+      </div>
+      <div class="featured-content">
+        <div class="status-row"><span class:list={["status-chip", `status-${featuredProject.statusKey}`]}>{featuredProject.status}</span><span class="edition-label">PROJECT / 001</span></div>
+        <h1 id="featured-title">{featuredProject.arabicTitle}</h1>
+        <p class="featured-title-en">{featuredProject.title}</p>
+        <p class="featured-summary">{featuredProject.shortDescription}</p>
+        <div class="feature-ledger"><span><b>المسار</b>{featuredProject.routeCode}</span><span><b>المنصة</b>{featuredProject.platforms.join("، ")}</span><span><b>الإصدار</b>{featuredReleaseLabel}</span></div>
+        <div class="featured-footer"><div><small>آخر علامة</small><strong>{featuredProject.updatedAt}</strong></div><a class="solid-cta" href={`/translations/${featuredProject.slug}/`}>سجل المشروع <span>↖</span></a></div>
+      </div>
+    </article>
+  </section>
+
+  <section class="home-route-status" aria-labelledby="route-status-title">
+    <div class="section-kicker"><span class="station-counter">02</span><span class="route-orbit"></span><span class="route-label">STATUS / PRE-RELEASE</span><span>المحطة التالية</span><span class="coordinates">α–LINE</span></div>
+    <div class="route-status-heading"><div><h2 id="route-status-title">ملف المشروع قيد التجهيز</h2><p>هذه هي المعلومات المؤكدة الآن؛ لن نعلن توافقًا نهائيًا أو تنزيلًا قبل الاختبار العملي.</p></div><a class="round-link" href={`/translations/${featuredProject.slug}/`} aria-label="تفاصيل ملف Steins;Gate">↖</a></div>
+    <div class="route-status-grid">
+      <article><span class="route-status-number">01</span><div><small>ENVIRONMENT</small><strong>Steam</strong><p>المنصة المستهدفة للمشروع.</p></div></article>
+      <article><span class="route-status-number">02</span><div><small>PATCH PATH</small><strong dir="ltr">CoZ 2.2.0</strong><p dir="ltr">Build 4138816 · قيد التحقق</p></div></article>
+      <article><span class="route-status-number">03</span><div><small>FIRST RELEASE</small><strong>لم يُنشر بعد</strong><p>سيظهر زر التنزيل مع إصدار فعلي فقط.</p></div></article>
+    </div>
+  </section>
+
+  <section class="updates-section home-updates" aria-labelledby="updates-title">
+    <div class="section-kicker inverse"><span class="station-counter">03</span><span class="route-orbit"></span><span class="route-label">ROUTE / LOG</span><span>الإشارة الأخيرة</span><span class="coordinates">51.42°E</span></div>
+    <div class="updates-head"><h2 id="updates-title">سجل الخط</h2>{hasUpdates && <a href="/blog/">كل السجل ←</a>}</div>
+    {hasUpdates ? (
+      <div class="timeline">{posts.slice(0, 2).map((post, index) => <article class="timeline-item"><div class="timeline-date"><strong>{String(index + 1).padStart(2, "0")}</strong><span>{post.category}</span></div><div class="timeline-node"><i></i></div><div><h3>{post.title}</h3><p>{post.excerpt}</p></div></article>)}</div>
+    ) : (
+      <article class="empty-station"><span class="empty-station-node">03</span><div><small>LOG / HOLD</small><h3>لم يُسجَّل تحديث منشور بعد.</h3><p>سيبدأ السجل عندما يوجد خبر أو تقدم يستحق مشاركته، لا لمجرد ملء الواجهة.</p></div></article>
+    )}
+  </section>
+
+  <section class="about-strip home-about"><span class="route-label">ALPHA LINE / ABOUT</span><h2>نحو نسخة عربية تحفظ<br />إيقاع الحكاية.</h2><p>فريق ناشئ يبني أرشيفًا صغيرًا ومنظمًا للتعريبات، بدايةً من الأعمال السردية ثم أبعد من ذلك.</p><a href="/about/" class="outline-cta">حول ألفا لاين <span>←</span></a></section>
+</BaseLayout>
+
+<style>
+  /* أطلس المسارات: المحطات تتتابع بكثافة هادئة، والصورة وبيانات الحالة هما مرساة الواجهة. */
+  .home-featured { padding-bottom: 24px; }
+  .home-route-status { padding: 34px 18px 42px; background: #082333; border-block: 1px solid rgba(125, 182, 202, .18); }
+  .route-status-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; margin: 14px 0 18px; }
+  .route-status-heading h2 { margin: 0; color: var(--paper); font: 600 24px/1.55 "Noto Kufi Arabic", sans-serif; letter-spacing: -.06em; }
+  .route-status-heading p { max-width: 540px; margin: 6px 0 0; color: #aec1c9; font-size: 12px; line-height: 1.9; }
+  .route-status-grid { display: grid; gap: 10px; }
+  .route-status-grid article { position: relative; display: grid; grid-template-columns: 38px 1fr; gap: 12px; min-height: 106px; padding: 16px; border: 1px solid rgba(108, 184, 211, .22); background: linear-gradient(130deg, rgba(15, 57, 73, .72), rgba(8, 35, 51, .86)); }
+  .route-status-grid article::after { position: absolute; top: 16px; left: 16px; width: 21px; height: 21px; border: 1px solid rgba(70, 200, 245, .62); border-bottom-color: transparent; border-radius: 999px; content: ""; }
+  .route-status-number { display: grid; place-items: center; width: 31px; height: 31px; border: 1px solid rgba(70, 200, 245, .62); border-radius: 50%; color: var(--cyan); font: 600 11px "Space Grotesk", sans-serif; }
+  .route-status-grid small, .empty-station small { display: block; color: var(--cyan); font: 500 9px "Space Grotesk", sans-serif; letter-spacing: .12em; }
+  .route-status-grid strong { display: block; margin-top: 6px; color: var(--paper); font: 600 15px/1.45 "Noto Kufi Arabic", sans-serif; }
+  .route-status-grid p { margin: 3px 0 0; color: #9fb6bf; font-size: 11px; }
+  .home-updates { padding-top: 36px; padding-bottom: 42px; background: #061b29; color: var(--paper); }
+  .home-updates .inverse { color: #a2bac4; }
+  .home-updates .route-orbit { border-color: var(--cyan); border-left-color: transparent; }
+  .home-updates .updates-head h2 { color: var(--paper); }
+  .empty-station { display: grid; grid-template-columns: 42px 1fr; gap: 14px; margin-top: 20px; padding: 18px; border: 1px solid rgba(70, 200, 245, .26); background: rgba(10, 44, 61, .6); }
+  .empty-station-node { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid var(--cyan); border-radius: 50%; color: var(--cyan); font: 600 11px "Space Grotesk", sans-serif; }
+  .empty-station h3 { margin: 7px 0 0; color: var(--paper); font: 600 16px/1.55 "Noto Kufi Arabic", sans-serif; }
+  .empty-station p { margin: 5px 0 0; color: #a9bdc5; font-size: 11px; line-height: 1.9; }
+  .home-about { padding-top: 40px; padding-bottom: 70px; }
+  @media (min-width: 720px) { .home-route-status, .home-updates { padding-inline: clamp(32px, 6vw, 92px); } .route-status-grid { grid-template-columns: repeat(3, 1fr); } .route-status-grid article { grid-template-columns: 34px 1fr; } .home-featured { padding-inline: clamp(32px, 6vw, 92px); } }
+</style>

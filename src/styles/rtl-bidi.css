@@ -1,0 +1,180 @@
+/* Alpha Line — أطلس المسارات: العربية هي محور القراءة، والوسوم الإنجليزية التقنية تظهر كوحدات مسار معزولة لا تنافس النص العربي. */
+
+html,
+body {
+  overflow-x: clip;
+}
+
+.bidi-ltr,
+.route-label,
+.card-route,
+.card-series,
+.card-title-en,
+.card-signal-grid i,
+.card-signal-grid b,
+.card-bottom-line span,
+.version-row dd,
+.project-hero-copy > p {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+.project-hero-copy {
+  text-align: right;
+}
+
+.project-hero-copy > .project-route-label {
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 8.5px;
+  letter-spacing: 0.075em;
+  text-align: right;
+}
+
+.project-hero-copy .status-chip {
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 10px;
+}
+
+.project-hero-copy h1,
+.page-hero > p {
+  unicode-bidi: plaintext;
+}
+
+.project-hero-copy > .project-title-en {
+  direction: rtl;
+  unicode-bidi: plaintext;
+  text-align: right;
+}
+
+.project-title-en > bdi {
+  display: inline;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+/* Keep hero copy independent from the full-bleed cover scrim. */
+.project-hero > .project-hero-copy {
+  position: absolute;
+  inset: auto;
+  right: 18px;
+  bottom: 32px;
+  left: 18px;
+  width: auto;
+  height: auto;
+  background: transparent;
+  object-fit: initial;
+}
+
+.version-page-hero .route-label,
+.version-page-hero > p {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.version-list,
+.version-row,
+.version-row > div,
+.version-row dl,
+.version-row dl > div {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.version-row h2,
+.version-row p,
+.version-row dd {
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 1000px) {
+  .project-hero > .project-hero-copy {
+    right: 8vw;
+    left: 8vw;
+  }
+}
+
+@media (max-width: 739px) {
+  .project-hero .back-link {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 3;
+    margin: 0;
+    padding: 4px 7px;
+    border: 1px solid rgba(139, 224, 250, 0.18);
+    border-radius: 999px;
+    background: rgba(6, 24, 37, 0.5);
+    backdrop-filter: blur(8px);
+    font-size: 9px;
+    line-height: 1.45;
+  }
+
+  .project-hero .hero-station {
+    top: 18px;
+    right: auto;
+    left: 18px;
+    gap: 6px;
+  }
+
+  .project-hero .hero-station b {
+    width: 26px;
+    height: 26px;
+    font-size: 9px;
+  }
+
+  .project-hero .hero-station i {
+    width: 22px;
+  }
+
+  .project-hero-copy {
+    top: auto;
+    bottom: 32px;
+  }
+
+  .project-hero-copy > .project-route-label {
+    display: none;
+  }
+
+  .project-hero-copy .status-chip {
+    display: none;
+  }
+
+  .project-hero-copy > .project-title-en {
+    display: table;
+    width: auto;
+    max-width: 100%;
+    margin: 12px auto 0 18px;
+    direction: ltr;
+    text-align: left;
+    letter-spacing: 0.1em;
+  }
+
+  .version-page-hero {
+    padding-top: 38px;
+    padding-bottom: 30px;
+  }
+
+  .version-page-hero h1 {
+    font-size: 29px;
+    line-height: 1.4;
+  }
+
+  .version-row {
+    grid-template-columns: 30px minmax(0, 1fr);
+    gap: 10px;
+    padding: 16px;
+  }
+
+  .version-row dl {
+    flex-wrap: wrap;
+    gap: 10px 20px;
+  }
+}

@@ -1,0 +1,74 @@
+---
+// هوية «أطلس المسارات»: محطة فحص معزولة، لا تحاكي إصدارًا ولا تمنح رابط اختبار صفة تنزيل عام.
+import type { PreviewDownloadTest } from "../data/content";
+
+interface Props { test: PreviewDownloadTest; }
+const { test } = Astro.props;
+const verificationLabels = {
+  verified: "فُحص أوليًا",
+  manual_check: "اختبار يدوي مطلوب",
+  access_check: "تحقق من الإتاحة",
+} as const;
+const platformIcons: Record<string, string> = {
+  mediafire: "MF",
+  mega: "M",
+  telegram: "➤",
+  "google-drive": "△",
+  gofile: "G",
+};
+---
+
+<section class="download-test-station" aria-labelledby="download-test-heading">
+  <span class="download-test-node" aria-hidden="true">04</span>
+  <div class="download-test-copy">
+    <span class="download-test-kicker"><b>محطة المعاينة</b><i></i><span class="route-label">DOWNLOAD ROUTES</span></span>
+    <h2 id="download-test-heading">اختبار محطة التنزيل</h2>
+    <p>{test.notice}</p>
+  </div>
+  <button class="download-test-trigger" type="button" data-download-test-open>
+    <span>فحص المصادر</span><bdi dir="ltr">{test.sources.length} ROUTES</bdi>
+  </button>
+</section>
+
+<dialog class="download-test-dialog" data-download-test-dialog aria-labelledby="download-test-dialog-title">
+  <div class="download-test-dialog-inner">
+    <header class="download-test-dialog-header">
+      <div>
+        <span class="route-label">PREVIEW ONLY / NOT A RELEASE</span>
+        <h2 id="download-test-dialog-title">مصادر ملف الاختبار</h2>
+      </div>
+      <button class="download-test-close" type="button" data-download-test-close aria-label="إغلاق نافذة اختبار التنزيل">×</button>
+    </header>
+    <p class="download-test-file"><span>الملف</span><bdi dir="ltr">{test.fileLabel}</bdi></p>
+    <p class="download-test-warning">لن يؤدي أي رابط هنا إلى تنزيل باتش تعريب. تفتح المصادر في علامة تبويب جديدة لاختبار السلوك فقط.</p>
+    <div class="download-test-sources">
+      {test.sources.map((source, index) => (
+        <a class="download-test-source" href={source.url} target="_blank" rel="noreferrer" data-verification={source.verification}>
+          <span class="download-test-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+          <span class="download-test-platform-icon" data-platform={source.id} aria-hidden="true">{platformIcons[source.id] ?? "↗"}</span>
+          <span class="download-test-source-copy">
+            <strong>{source.label}</strong>
+            <small>{source.note}</small>
+          </span>
+          <span class="download-test-state">{verificationLabels[source.verification]}</span>
+          <span class="download-test-arrow" aria-hidden="true">↗</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</dialog>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-download-test-open]").forEach((trigger) => {
+    const station = trigger.closest(".download-test-station");
+    const dialog = station?.nextElementSibling;
+    if (!(dialog instanceof HTMLDialogElement)) return;
+    const close = dialog.querySelector<HTMLElement>("[data-download-test-close]");
+
+    trigger.addEventListener("click", () => dialog.showModal());
+    close?.addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  });
+</script>

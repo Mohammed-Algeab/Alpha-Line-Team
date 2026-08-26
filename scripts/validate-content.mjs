@@ -13,6 +13,24 @@ const stageSchema = z.object({
   state: z.enum(["complete", "active", "upcoming"]),
 });
 
+const assetReferenceSchema = z.string().min(1).refine(
+  (value) => value.startsWith("/") || /^https?:\/\//.test(value),
+  "يجب أن يكون مرجع الأصل رابط HTTP(S) أو مسارًا عامًا يبدأ بـ /."
+);
+
+const previewTestDownloadSchema = z.object({
+  enabled: z.boolean(),
+  fileLabel: z.string().min(1),
+  notice: z.string().min(1),
+  sources: z.array(z.object({
+    id: z.string().regex(/^[a-z0-9-]+$/),
+    label: z.string().min(1),
+    url: z.string().url(),
+    verification: z.enum(["verified", "manual_check", "access_check"]),
+    note: z.string().min(1),
+  })).min(1),
+});
+
 const projectV2Schema = z.object({
   schemaVersion: z.literal(2),
   slug: z.string().regex(/^[a-z0-9-]+$/),
@@ -22,7 +40,7 @@ const projectV2Schema = z.object({
     arabicTitle: z.string().min(1),
     series: z.object({ key: z.string().min(1), label: z.string().min(1), slug: z.string().min(1) }),
     platforms: z.array(z.string().min(1)).min(1),
-    artworkKey: z.string().min(1),
+    artwork: z.object({ coverUrl: assetReferenceSchema }),
     summary: z.string().min(1),
     story: z.string().min(1),
   }),
@@ -48,6 +66,7 @@ const projectV2Schema = z.object({
     downloads: z.array(z.object({ label: z.string().min(1), url: z.string().url(), primary: z.boolean() })),
     installation: z.array(z.string().min(1)),
   }),
+  previewTestDownloads: previewTestDownloadSchema.optional(),
   seo: z.object({ indexable: z.boolean(), aliases: z.array(z.string().min(1)).min(1), updatedLabel: z.string().min(1) }),
 });
 
@@ -72,6 +91,10 @@ for (const file of files) {
 
   if (!project.release.published && project.release.installation.length === 0) {
     throw new Error(`${project.slug}: يجب أن توضح مرحلة ما قبل الإصدار أن تعليمات التثبيت لم تُنشر بعد.`);
+  }
+
+  if (project.release.published && project.previewTestDownloads?.enabled) {
+    throw new Error(`${project.slug}: لا تخلط نافذة تنزيل تجريبية مع إصدار منشور.`);
   }
 
   if (project.project.compatibility.verification === "pending" && project.project.compatibility.note.includes("متوافق")) {

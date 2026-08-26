@@ -15,6 +15,7 @@ const featuredReleaseLabel = featuredProject.hasPublishedRelease && latest ? lat
     <div class="section-kicker">
       <span class="station-counter">01</span><span class="route-orbit"></span><span class="route-label">ROUTE / {featuredProject.routeCode}</span><span>المسار المميز</span><span class="coordinates">35.68°N</span>
     </div>
+    <div class="archive-index" aria-label="فهرس المشروع المميز"><span>سجل الإشارة / 001</span><i></i><span>مشروع ظاهر / 01</span></div>
     <article class="featured-card">
       <span class="featured-route-line"><i></i></span>
       <div class="featured-image-wrap">
@@ -59,23 +60,27 @@ const featuredReleaseLabel = featuredProject.hasPublishedRelease && latest ? lat
 <style>
   /* أطلس المسارات: المحطات تتتابع بكثافة هادئة، والصورة وبيانات الحالة هما مرساة الواجهة. */
   .home-featured { padding-bottom: 24px; }
-  .home-route-status { padding: 34px 18px 42px; background: #082333; border-block: 1px solid rgba(125, 182, 202, .18); }
+  .home-route-status { position: relative; padding: 34px 18px 42px; background: var(--ink-2); border-block: 1px solid var(--line); }
+  .home-route-status::before { position: absolute; top: -1px; right: clamp(28px, 14vw, 140px); width: 1px; height: 46px; background: linear-gradient(var(--cyan-strong), transparent); content: ""; }
+  .archive-index { display: flex; align-items: center; gap: 9px; margin: 10px 0 13px; color: var(--mist); font: 500 9px/1 "Space Grotesk", sans-serif; letter-spacing: .13em; text-transform: uppercase; }
+  .archive-index i { display: block; width: 28px; height: 1px; background: var(--cyan-strong); opacity: .72; }
   .route-status-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; margin: 14px 0 18px; }
   .route-status-heading h2 { margin: 0; color: var(--paper); font: 600 24px/1.55 "Noto Kufi Arabic", sans-serif; letter-spacing: -.06em; }
   .route-status-heading p { max-width: 540px; margin: 6px 0 0; color: #aec1c9; font-size: 12px; line-height: 1.9; }
   .route-status-grid { display: grid; gap: 10px; }
-  .route-status-grid article { position: relative; display: grid; grid-template-columns: 38px 1fr; gap: 12px; min-height: 106px; padding: 16px; border: 1px solid rgba(108, 184, 211, .22); background: linear-gradient(130deg, rgba(15, 57, 73, .72), rgba(8, 35, 51, .86)); }
-  .route-status-grid article::after { position: absolute; top: 16px; left: 16px; width: 21px; height: 21px; border: 1px solid rgba(70, 200, 245, .62); border-bottom-color: transparent; border-radius: 999px; content: ""; }
-  .route-status-number { display: grid; place-items: center; width: 31px; height: 31px; border: 1px solid rgba(70, 200, 245, .62); border-radius: 50%; color: var(--cyan); font: 600 11px "Space Grotesk", sans-serif; }
+  .route-status-grid article { position: relative; display: grid; grid-template-columns: 38px 1fr; gap: 12px; min-height: 106px; padding: 16px; border: 1px solid var(--line); background: linear-gradient(130deg, var(--surface-3), var(--ink-2)); }
+  .route-status-grid article::after { position: absolute; top: 17px; left: 17px; width: 24px; height: 1px; background: var(--cyan-strong); opacity: .68; content: ""; }
+  .route-status-number { display: grid; place-items: center; width: 31px; height: 31px; border: 1px solid rgba(147, 226, 255, .62); border-radius: 5px; color: var(--cyan); font: 600 11px "Space Grotesk", sans-serif; }
   .route-status-grid small, .empty-station small { display: block; color: var(--cyan); font: 500 9px "Space Grotesk", sans-serif; letter-spacing: .12em; }
   .route-status-grid strong { display: block; margin-top: 6px; color: var(--paper); font: 600 15px/1.45 "Noto Kufi Arabic", sans-serif; }
   .route-status-grid p { margin: 3px 0 0; color: #9fb6bf; font-size: 11px; }
-  .home-updates { padding-top: 36px; padding-bottom: 42px; background: #061b29; color: var(--paper); }
+  .home-updates { position: relative; padding-top: 36px; padding-bottom: 42px; background: var(--ink-0); color: var(--paper); }
+  .home-updates::before { position: absolute; top: 0; right: clamp(28px, 14vw, 140px); width: 1px; height: 34px; background: linear-gradient(var(--cyan-strong), transparent); content: ""; }
   .home-updates .inverse { color: #a2bac4; }
   .home-updates .route-orbit { border-color: var(--cyan); border-left-color: transparent; }
   .home-updates .updates-head h2 { color: var(--paper); }
-  .empty-station { display: grid; grid-template-columns: 42px 1fr; gap: 14px; margin-top: 20px; padding: 18px; border: 1px solid rgba(70, 200, 245, .26); background: rgba(10, 44, 61, .6); }
-  .empty-station-node { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid var(--cyan); border-radius: 50%; color: var(--cyan); font: 600 11px "Space Grotesk", sans-serif; }
+  .empty-station { display: grid; grid-template-columns: 42px 1fr; gap: 14px; margin-top: 20px; padding: 18px; border: 1px solid var(--line); background: var(--ink-2); }
+  .empty-station-node { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid var(--cyan); border-radius: 5px; color: var(--cyan); font: 600 11px "Space Grotesk", sans-serif; }
   .empty-station h3 { margin: 7px 0 0; color: var(--paper); font: 600 16px/1.55 "Noto Kufi Arabic", sans-serif; }
   .empty-station p { margin: 5px 0 0; color: #a9bdc5; font-size: 11px; line-height: 1.9; }
   .home-about { padding-top: 40px; padding-bottom: 70px; }

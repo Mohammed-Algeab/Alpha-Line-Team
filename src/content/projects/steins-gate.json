@@ -7,7 +7,9 @@
     "arabicTitle": "شتاينز؛غيت",
     "series": { "key": "SCIENCE ADVENTURE", "label": "SciADV", "slug": "sciadv" },
     "platforms": ["Windows · Steam"],
-    "artworkKey": "steinsGateCover",
+    "artwork": {
+      "coverUrl": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663093354307/vwxKDbLyaLvdyLJI.jpg"
+    },
     "summary": "المشروع الأول لألفا لاين ضمن SciADV. يجري إعداد أساس التعريب لنسخة Steam، ولا يوجد إصدار عام أو ملفات تنزيل في هذه المرحلة.",
     "story": "تبدأ الحكاية من أكيهابارا، حيث تقود تجربة صغيرة إلى سلسلة من الرسائل القادمة من زمن آخر. تتسع الدائرة تدريجيًا بين الاحتمالات والقرارات التي لا يمكن التراجع عنها."
   },
@@ -45,6 +47,18 @@
     "versions": [],
     "downloads": [],
     "installation": ["لا توجد ملفات تنزيل أو خطوات تثبيت عامة في هذه المرحلة.", "ستنشر متطلبات نسخة اللعبة وطريقة التثبيت مع أول إصدار قابل للاختبار."]
+  },
+  "previewTestDownloads": {
+    "enabled": true,
+    "fileLabel": "test.txt — ملف اختبار صغير",
+    "notice": "هذه نافذة تقنية لاختبار انتقال المستخدم بين المصادر فقط. لا يوجد باتش تعريب أو إصدار عام في هذه المرحلة.",
+    "sources": [
+      { "id": "mediafire", "label": "MediaFire", "url": "https://www.mediafire.com/file/mg216a8vzkguzr3/test.txt/file", "verification": "verified", "note": "ظهرت صفحة عامة لملف الاختبار عند الفحص الأولي." },
+      { "id": "mega", "label": "MEGA", "url": "https://mega.nz/file/mQ8nhZgI#Na97k5JwiEUsMja-45xqVoIw04Vhdy8GAAAAAAAAAAA", "verification": "manual_check", "note": "رابط اختبار يحتاج تجربة يدوية من الهاتف والكمبيوتر." },
+      { "id": "telegram", "label": "Telegram", "url": "https://t.me/alpha_line_team/3", "verification": "manual_check", "note": "رابط اختبار يقود إلى منشور القناة." },
+      { "id": "google-drive", "label": "Google Drive", "url": "https://drive.google.com/file/d/1dNtL-mO8PcXf1bIXHN1N3RdD_xrl1rGv/view?usp=drivesdk", "verification": "access_check", "note": "يحتاج ضبط المشاركة إلى «أي شخص لديه الرابط» قبل اعتماده." },
+      { "id": "gofile", "label": "GoFile", "url": "https://gofile.io/d/23e75ac6-df45-4558-95d6-bed81e882bd1", "verification": "access_check", "note": "يلزم تأكيد أن الرابط نشط قبل اعتماده كمصدر فعلي." }
+    ]
   },
   "seo": {
     "indexable": true,

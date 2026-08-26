@@ -1,11 +1,58 @@
 ---
-// هوية «أطلس المسارات»: صفحة الدوسيه توثق الحالة القابلة للتحقق؛ زر التنزيل لا يظهر قبل صدور إصدار فعلي.
+// هوية «أطلس المسارات × Chronos»: الغلاف تضاريس ملف، والبيانات العربية تقود المسار فوقه بوضوح قابل للتحقق.
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { projects, type Project } from "../../data/content";
-export function getStaticPaths() { return projects.map((project) => ({ params: { slug: project.slug }, props: { project } })); }
+import PreviewDownloadTest from "../../components/PreviewDownloadTest.astro";
+import { previewDownloadTests, projects, type Project } from "../../data/content";
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+
 const { project } = Astro.props as { project: Project };
 const current = project.versions.find((version) => version.current) ?? project.versions[0] ?? null;
 const hasPublishedRelease = project.hasPublishedRelease === true && current !== null;
 const compatibility = project.v2?.project.compatibility;
+const previewTest = previewDownloadTests ? project.previewTestDownloads : undefined;
 ---
-<BaseLayout title={`${project.arabicTitle} — Alpha Line`} description={project.shortDescription} active="translations" ogImage={project.ogImage}><article class="project-page"><section class="project-hero"><img src={project.heroImage} alt={`غلاف مشروع ${project.arabicTitle}`} /><div class="project-hero-scrim"></div><span class="hero-station" aria-hidden="true"><b>01</b><i></i></span><a class="back-link" href="/translations/">← أرشيف التعريبات</a><div class="project-hero-copy"><span class="route-label project-route-label" dir="ltr">PROJECT / {project.routeCode} · {project.series}</span><span class:list={["status-chip", `status-${project.statusKey}`]}>{project.status}</span><h1>{project.arabicTitle}</h1><p class="project-title-en"><bdi dir="ltr">{project.title}</bdi></p></div></section><section class="project-ledger"><div><small>الحالة</small><b>{project.status}</b></div><div><small>المنصة</small><b>{project.platforms.join("، ")}</b></div><div><small>آخر تحديث</small><b>{project.updatedAt}</b></div></section><section class="project-content"><div class="dossier-rail" aria-hidden="true"><span>01</span><i></i><span>02</span><i></i><span>03</span></div><div class="prose"><section class="dossier-section"><header><span class="dossier-node">01</span><div><span class="route-label">COORD / N–35.68</span><h2>عن اللعبة</h2></div></header><p>{project.story}</p></section><section class="dossier-section"><header><span class="dossier-node">02</span><div><span class="route-label">COORD / N–35.69</span><h2>عن التعريب</h2></div></header><p>{project.translationStory}</p></section><section class="dossier-section"><header><span class="dossier-node">03</span><div><span class="route-label">COORD / N–35.70</span><h2>{hasPublishedRelease ? "كيفية التثبيت" : "ما سيظهر مع الإصدار"}</h2></div></header><ol>{project.installation.map((item) => <li>{item}</li>)}</ol></section></div>{hasPublishedRelease ? <aside class="current-release"><span class="release-node" aria-hidden="true">R–{current.translation}</span><span class="route-label">LATEST RELEASE</span><h2>آخر إصدار</h2><dl><div><dt>إصدار التعريب</dt><dd>{current.translation}</dd></div><div><dt>نسخة اللعبة</dt><dd>{current.game}</dd></div><div><dt>الحالة</dt><dd>{current.date}</dd></div></dl><p>{current.notes}</p><a class="outline-cta" href={`/translations/${project.slug}/versions/`}>سجل الإصدارات <span>←</span></a></aside> : <aside class="current-release"><span class="release-node" aria-hidden="true">R–WAIT</span><span class="route-label">RELEASE STATUS</span><h2>لا يوجد إصدار بعد</h2><dl><div><dt>النسخة المستهدفة</dt><dd>{compatibility?.gameVersion ?? "بانتظار تثبيت النسخة"}</dd></div><div><dt>قاعدة الباتش</dt><dd>{compatibility?.patchBase ?? "بانتظار الاختبار"}</dd></div><div><dt>حالة التوافق</dt><dd>{compatibility?.verification === "pending" ? "بانتظار التحقق العملي" : compatibility?.verification === "verified" ? "تم التحقق" : "غير محددة"}</dd></div></dl><p>{compatibility?.note ?? "ستُضاف التفاصيل العملية بعد أول اختبار وتعريب قابل للتجربة."}</p></aside>}</section></article></BaseLayout>
+
+<BaseLayout title={`${project.arabicTitle} — Alpha Line`} description={project.shortDescription} active="translations" ogImage={project.ogImage} showMobileNav={false}>
+  <article class="project-page">
+    <section class="project-hero">
+      <img src={project.heroImage} alt={`غلاف مشروع ${project.arabicTitle}`} />
+      <div class="project-hero-scrim"></div>
+      <span class="hero-terrain-line" aria-hidden="true"></span>
+      <span class="hero-station" aria-hidden="true"><span>أرشيف ألفا لاين</span><b>{project.routeCode}</b></span>
+      <div class="project-hero-archive-meta" aria-hidden="true"><span>سجل المسار</span><i></i><b dir="ltr">{project.routeCode}</b></div>
+      <a class="back-link" href="/translations/">← أرشيف التعريبات</a>
+      <div class="project-hero-copy">
+        <div class="project-hero-route"><span class="hero-file-label">ملف التعريب</span><span class="route-label" dir="ltr">{project.routeCode} / {project.series}</span></div>
+        <span class:list={["status-chip", `status-${project.statusKey}`]}>{project.status}</span>
+        <h1>{project.arabicTitle}</h1>
+        <p class="project-title-en"><bdi dir="ltr">{project.title}</bdi></p>
+      </div>
+    </section>
+
+    <section class="project-ledger">
+      <div><small>الحالة</small><b>{project.status}</b></div>
+      <div><small>المنصة</small><b>{project.platforms.join("، ")}</b></div>
+      <div><small>آخر تحديث</small><b>{project.updatedAt}</b></div>
+    </section>
+
+    <section class="project-content">
+      <div class="dossier-rail" aria-hidden="true"><span>01</span><i></i><span>02</span><i></i><span>03</span></div>
+      <div class="prose">
+        <section class="dossier-section"><header><span class="dossier-node">01</span><div><span class="archive-coordinate"><b>إحداثية</b><i dir="ltr">N–35.68</i></span><h2>عن اللعبة</h2></div></header><p>{project.story}</p></section>
+        <section class="dossier-section"><header><span class="dossier-node">02</span><div><span class="archive-coordinate"><b>إحداثية</b><i dir="ltr">N–35.69</i></span><h2>عن التعريب</h2></div></header><p>{project.translationStory}</p></section>
+        <section class="dossier-section"><header><span class="dossier-node">03</span><div><span class="archive-coordinate"><b>إحداثية</b><i dir="ltr">N–35.70</i></span><h2>{hasPublishedRelease ? "كيفية التثبيت" : "ما سيظهر مع الإصدار"}</h2></div></header><ol>{project.installation.map((item) => <li>{item}</li>)}</ol></section>
+      </div>
+
+      {hasPublishedRelease ? (
+        <aside class="current-release"><span class="release-node" aria-hidden="true">R–{current.translation}</span><span class="archive-section-label">محطة الإصدار</span><h2>آخر إصدار</h2><dl><div><dt>إصدار التعريب</dt><dd>{current.translation}</dd></div><div><dt>نسخة اللعبة</dt><dd>{current.game}</dd></div><div><dt>الحالة</dt><dd>{current.date}</dd></div></dl><p>{current.notes}</p><a class="outline-cta" href={`/translations/${project.slug}/versions/`}>سجل الإصدارات <span>←</span></a></aside>
+      ) : (
+        <aside class="current-release"><span class="release-node" aria-hidden="true">R–WAIT</span><span class="archive-section-label">محطة الإصدار</span><h2>بانتظار أول إصدار</h2><dl><div><dt>النسخة المستهدفة</dt><dd>{compatibility?.gameVersion ?? "بانتظار تثبيت النسخة"}</dd></div><div><dt>قاعدة الباتش</dt><dd>{compatibility?.patchBase ?? "CoZ 2.2.0"}</dd></div><div><dt>حالة التوافق</dt><dd>{compatibility?.verification === "pending" ? "بانتظار التحقق العملي" : compatibility?.verification === "verified" ? "تم التحقق" : "غير محددة"}</dd></div></dl><p>{compatibility?.note ?? "ستُضاف التفاصيل العملية بعد أول اختبار وتعريب قابل للتجربة."}</p></aside>
+      )}
+    </section>
+
+    {previewTest?.enabled && <PreviewDownloadTest test={previewTest} />}
+  </article>
+</BaseLayout>

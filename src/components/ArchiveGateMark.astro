@@ -1,0 +1,19 @@
+---
+// Chronos Archive: بوابة الأرشيف المرجعية — جناحان مفتوحان، محطة سماوية، ومسارات قاعدة متناظرة.
+interface Props { class?: string; title?: string; }
+const { class: className = "", title = "" } = Astro.props;
+---
+
+<svg class:list={["archive-gate-mark", className]} viewBox="0 0 64 64" role={title ? "img" : undefined} aria-hidden={title ? undefined : "true"} aria-label={title || undefined} fill="none" xmlns="http://www.w3.org/2000/svg">
+  {title && <title>{title}</title>}
+  <path class="gate-leaf" d="M10.5 15.5 29.2 23.4v25.7L17.1 56V30.3l-6.6-2.7V15.5Z" />
+  <path class="gate-leaf" d="M53.5 15.5 34.8 23.4v25.7L46.9 56V30.3l6.6-2.7V15.5Z" />
+  <path class="gate-spine" d="M32 23.5v24" />
+  <path class="gate-route gate-route-outer" d="M18.3 53.6 12.4 59.5H4.5" />
+  <path class="gate-route gate-route-inner" d="M26.7 49.7v6.3l-5.3 4.5H13.7" />
+  <path class="gate-route gate-route-center" d="M32 49.4v7.8l-6.1 5.3M32 57.2l6.1 5.3" />
+  <path class="gate-route gate-route-inner" d="M37.3 49.7v6.3l5.3 4.5h7.7" />
+  <path class="gate-route gate-route-outer" d="M45.7 53.6 51.6 59.5h7.9" />
+  <path class="gate-signal" d="M32 4.5v5.2M32 15.2v4.6" />
+  <path class="gate-waypoint" d="m32 10.9 4.7 4.7-4.7 4.7-4.7-4.7 4.7-4.7Z" />
+</svg>

@@ -1,25 +1,23 @@
 ---
-// هوية «أطلس المسارات»: A نقطة المسار؛ A مهيكل، خط سيان واحد يتصل بقاعدته، ونقطة دليل واحدة لا تنافسه.
-interface Props { variant?: "symbol" | "lockup"; }
+// Chronos Archive: «بوابة الأرشيف» — رمز متجه ثابت، مع مسارات لغوية متقاربة ومحطة سماوية واحدة.
+import ArchiveGateMark from "./ArchiveGateMark.astro";
+interface Props { variant?: "symbol" | "compact" | "lockup"; }
 const { variant = "symbol" } = Astro.props;
 ---
 
 {variant === "lockup" ? (
-  <span class="brand-waypoint-lockup">
-    <svg class="brand-waypoint-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-      <path class="brand-waypoint-letter" d="M20 52 32 12l12 40M25.2 38.5h13.6" />
-      <path class="brand-waypoint-route" d="M11 52h9" />
-      <circle class="brand-waypoint-node" cx="8" cy="52" r="3" />
-    </svg>
-    <span class="brand-waypoint-copy">
+  <span class="brand-archive-lockup">
+    <ArchiveGateMark class="brand-archive-mark brand-archive-mark-desktop" />
+    <span class="brand-archive-copy">
       <span class="brand-wordmark"><b>ALPHA</b><em>LINE</em></span>
       <span class="brand-arabic" lang="ar">ألفا لاين <i>ARCHIVE 00</i></span>
     </span>
   </span>
+) : variant === "compact" ? (
+  <span class="brand-archive-compact">
+    <ArchiveGateMark class="brand-archive-mark" />
+    <span class="brand-compact-wordmark"><b>ALPHA</b><em>LINE</em></span>
+  </span>
 ) : (
-  <svg class="brand-waypoint-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-    <path class="brand-waypoint-letter" d="M20 52 32 12l12 40M25.2 38.5h13.6" />
-    <path class="brand-waypoint-route" d="M11 52h9" />
-    <circle class="brand-waypoint-node" cx="8" cy="52" r="3" />
-  </svg>
+  <ArchiveGateMark class="brand-archive-mark" />
 )}

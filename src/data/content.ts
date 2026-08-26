@@ -40,7 +40,7 @@ export const previewDownloadTests = publicationMode === "preview" && (import.met
 export const deployment = { previewOrigin, configuredOrigin };
 export const assets = {
   defaultOgImage: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663093354307/alpha-line-open-graph_0b289904.jpg",
-  logo: "/favicon.svg",
+  logo: "/manus-storage/alpha-line-archive-gate-user-reference-pfp_23300e23.png",
 };
 export const site = { name: "Alpha Line", arabicName: "ألفا لاين", routeCode: "AL–00", logo: assets.logo, description: "فريق عربي يطوّر ويجمع تعريبات الألعاب والروايات المرئية في أرشيف منظّم.", origin: configuredOrigin };
 
